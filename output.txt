@@ -1,0 +1,5 @@
+Output:
+Port 22 is open
+Port 53 is open
+Port 80 is open
+Port 443 is open
