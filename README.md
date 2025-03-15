@@ -1,4 +1,9 @@
-# Bash-Script
-Bash Script Port Scanning Tool
+#Port Scanner Bash Script
+This is a simple Bash script for port scanning. It scans a specified range of ports on a given IP address to identify open ports. The script uses nc (Netcat) for port checking.
 
-A straightforward Bash-based port scanning tool designed to identify open ports on a specified host within a given range. This script is helpful for conducting basic security assessments and evaluating network accessibility.
+#Features
+Scans a specified range of ports on a given IP address.
+Reports open ports.
+Lightweight and easy to use.
+#Requirements
+Netcat (nc): Make sure nc is installed on your system.
