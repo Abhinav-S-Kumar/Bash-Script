@@ -1,23 +1,17 @@
 #!/bin/bash
 
-target=$1
-start_port=$2
-end_port=$3
+# Simple Port Scanner
+# Usage: ./port_scanner.sh <target_ip>
 
-if [ -z "$target" ] || [ -z "$start_port" ] || [ -z "$end_port" ]; then
-    echo "Usage: $0 <target_ip> <start_port> <end_port>"
-    exit 1
+echo "Usage: ./port-scanner.sh [IP]"
+echo
+
+if [ "$1" = "" ]; then
+  echo "Usage: ./port-scanner.sh [IP]"
+else
+  target_ip=$1
+  echo "Scanning ports for $target_ip..."
+  nc -nvz $target_ip 1-65535 > "$target_ip.txt" 2>&1
+  tac "$target_ip.txt"
+  rm -rf "$target_ip.txt"
 fi
-
-if ! ping -c 1 -W 1 "$target" &> /dev/null; then
-    echo "Host $target is down or unreachable."
-    exit 1
-fi
-
-function port_scan {
-    for ((port=$start_port; port<=$end_port; port++)); do
-        (echo > /dev/tcp/"$target"/"$port") &> /dev/null && echo "Port $port is open"
-    done
-}
-
-port_scan
